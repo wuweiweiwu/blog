@@ -2,9 +2,9 @@
   "title": "Wei-Wei Wu",
   "url": "https://weiweiwu.me/",
   "language": "en",
-  "description": "I am writing about my experiences as a naval navel-gazer.",
+  "description": "I am writing about my experiences as a software engineer.",
   "feed": {
-    "subtitle": "I am writing about my experiences as a naval navel-gazer.",
+    "subtitle": "I am writing about my experiences as a software engineer.",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
     "id": "https://weiweiwu.me/"
