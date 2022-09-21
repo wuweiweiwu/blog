@@ -7,7 +7,7 @@ eleventyNavigation:
   order: 3
 ---
 
-Hi, my name is Wei-Wei, and I work a lot on SaaS products.
+Hi, my name is Wei-Wei.
 
 Right now I am a product engineer at [Density](https://density.io/), where I'm working on next-generation physical space analytic tools.
 
