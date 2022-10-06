@@ -1,6 +1,6 @@
 ---
-title: I finally have a blog.
-description: I finally have a blog.
+title: I finally have a blog
+description: I finally have a blog
 date: 2022-09-20
 tags:
 layout: layouts/post.njk
