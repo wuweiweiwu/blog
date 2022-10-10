@@ -1,5 +1,5 @@
 ---
-title: I finally have a blog
+title: I Finally Have a Blog
 description: I finally have a blog
 date: 2022-09-20
 tags:
