@@ -16,8 +16,8 @@
   --background-color: #fff;
 
   --text-color: var(--color-gray-90);
-  --text-color-link: #082840;
-  --text-color-link-visited: #17050f;
+  --text-color-link: var(--color-gray-90);
+  --text-color-link-visited: var(--color-gray-90);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,10 +27,10 @@
     --color-gray-90: #dad8d8;
 
     /* --text-color is assigned to --color-gray-_ above */
-    --text-color-link: #1493fb;
-    --text-color-link-visited: #a6a6f8;
+    --text-color-link: var(--color-gray-90);
+    --text-color-link-visited: var(--color-gray-90);
 
-    --background-color: #15202b;
+    --background-color: #000000;
   }
 }
 
