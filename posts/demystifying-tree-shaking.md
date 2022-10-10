@@ -2,15 +2,15 @@
 title: Demystifying Tree Shaking
 description: Deep dive into how webpack handles tree shaking
 date: 2022-10-09
-tags: bundling
+tags: webpack
 layout: layouts/post.njk
 ---
 
-I recently found this [issue](https://github.com/webpack/webpack/issues/9337) on GitHub from 2019 where tree shaking in webpack wasn't working as expected. That took me down a rabbit hole of different [docs](https://webpack.js.org/guides/tree-shaking/) and [forums](https://stackoverflow.com/questions/55339256/tree-shaking-with-rollup) to get to a definitive answer.
+I recently discovered this [issue](https://github.com/webpack/webpack/issues/9337) on GitHub from 2019 where tree shaking in `webpack` wasn't working as expected. That took me down a rabbit hole of different [docs](https://webpack.js.org/guides/tree-shaking/) and [forums](https://stackoverflow.com/questions/55339256/tree-shaking-with-rollup) to get to a definitive answer.
 
-But first, it is helpful to define what tree shaking is in the JavaScript world. I've always thought of it as "unused code should not be included in my final production bundle". Though that statement is technically correct, it lacks nuance.
+But first, let's define what tree shaking is. I've always thought of it as "unused code should not be included in my final production bundle." Though that statement is technically correct, it lacks nuance.
 
-With the introduction of `ES6`, we got `import` and `export` statements, which are statically analyzable and opened the door to many bundling optimizations. According to the [Module Spec](https://262.ecma-international.org/6.0/#sec-moduleevaluation), imported modules must have any side effects evaluated. However, that complicates how modern tools can effectly remove dead code. Take the following example.
+With the introduction of `ES6`, we got modules and `import` `export` statements, which are statically analyzable and opened the door to many bundling optimizations. According to the [Module Spec](https://262.ecma-international.org/6.0/#sec-moduleevaluation), imported modules must have any side effects evaluated. However, that complicates how modern tools can effectively remove unused code. Take the following example.
 
 ```js
 // Button.js
@@ -31,7 +31,7 @@ If `Button` is unused in your application code, it is safe to remove the `export
 
 That begs the question, "Is it safe to remove the rest of `Button.js`?". And the answer is we're not sure.
 
-To be able to remove the rest of `Button.js`, our bundler must first determine whether evaluating this module is side effect free. For example, does invoking `withHOC` result in a side effect? Does invoking the return value of `withHOC` result in a side effect? Due to the dynamic nature of JavaScript, in most cases, tools like `rollup` and `terser` cannot reliably determine whether side effects are present. So thats why we sometimes have to give our tools some hints.
+To be able to remove the rest of `Button.js`, our bundler must first determine whether evaluating this module is side effect free. For example, does invoking `withHOC` result in a side effect? Does invoking the return value of `withHOC` result in a side effect? Due to the dynamic nature of JavaScript, in most cases, tools like `rollup` and `terser` cannot reliably determine whether side effects are present. So that's why we sometimes have to give our tools some hints.
 
 ## `/*#__PURE__*/`
 
@@ -50,11 +50,11 @@ By prepending an expression with this comment, we are telling our bundler that t
 
 ## `usedExports`
 
-This is a [webpack optimization](https://webpack.js.org/configuration/optimization/#optimizationusedexports) that relies on `terser` to detect side effects in statements. However, as stated earlier, that is quite difficult in JavaScript. This optimization is on by default in `production` mode.
+This is a [webpack optimization](https://webpack.js.org/configuration/optimization/#optimizationusedexports) that relies on `terser` to detect side effects in statements. However, as stated earlier, it is difficult in JavaScript. This optimization is on by default in `production` mode.
 
 ## `sideEffects`
 
-This is a webpack optimization that relies on a new field in `package.json` that specifies side effects (if any) for a whole module. Here are some examples.
+This is a `webpack` optimization that relies on a new field in `package.json` that specifies side effects (if any) for a whole package. Here are some examples.
 
 ```json
 // package.json
@@ -70,7 +70,7 @@ This is a webpack optimization that relies on a new field in `package.json` that
 }
 ```
 
-This is conceptually very similar to `/*#__PURE__*/` but instead of at the statement level, it works on the module / file level. By specifying this property, you are telling `webpack` that certain files have side effects when imported and at the same time, which ones are pure and side effect free and thus can be easily optimized when exports are unused.
+This is conceptually very similar to `/*#__PURE__*/`, but instead of operating at the statement level, it works on the module/file level. By specifying this property, you are telling `webpack` that specified files have side effects when imported while also informing which ones are pure and side effect free and thus can be easily optimized when exports are unused.
 
 If a module is not flagged in `sideEffects` and no direct exports are used, the bundler can skip evaluating that module for side effects.
 
@@ -145,10 +145,12 @@ In the final bundle, only four files are included after the `sideEffects` optimi
 
 ## How to distribute libraries that is tree shakable
 
-There are a couple of things that library authors will have to do to make sure their libraries are able to be optimized.
+Here are a couple of things library authors can do to ensure their libraries can be optimized.
 
-- Distribute ES6 `import` and `export` syntax for your `module` entrypoint
-  - The `main` entrypoint is for ES5 compatible syntax
-- Don't bundle into a single file. `sideEffects` work on a module / file level
-  - Most of the time you can use `tsc` or `babel` to transpile your code while keeping the module structure
+- Distribute ES6 `import` and `export` syntax for modern package [entrypoints](https://nodejs.org/api/packages.html#package-entry-points)
+  - The `exports` field is the official modern alternative to `main`
+  - The `module` field is community driven and not actually in the spec, but is supported by most bundlers
+  - The `main` entrypoint is for ES5-compatible syntax
+- Don't bundle into a single file, `sideEffects` work at a module/file level
+  - Most of the time library authors can use `tsc` or `babel` to transpile code while keeping the module structure
   - `rollup` has a [`preserveModules`](https://rollupjs.org/guide/en/#outputpreservemodules) option that preserves individual files in the output

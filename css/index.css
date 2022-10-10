@@ -115,7 +115,7 @@ pre {
   background-color: #f6f6f6;
 }
 code {
-  word-break: break-all;
+  word-break: keep-all;
 }
 
 /* Header */
