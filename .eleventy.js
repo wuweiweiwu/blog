@@ -12,6 +12,7 @@ module.exports = function (eleventyConfig) {
   // Copy the `img` and `css` folders to the output
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("lib");
 
   eleventyConfig.addPassthroughCopy({
     "node_modules/@11ty/is-land/is-land.js": "lib/is-land.js",
