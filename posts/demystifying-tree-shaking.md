@@ -143,7 +143,7 @@ Here is how `webpack` decides which files to include.
 
 In the final bundle, only four files are included after the `sideEffects` optimization. After this, `webpack` can remove even more code via `usedExports` and `/*#__PURE__*/`.
 
-## How to distribute libraries that is tree shakable
+## How to distribute libraries that are tree shakable
 
 Here are a couple of things library authors can do to ensure their libraries can be optimized.
 
