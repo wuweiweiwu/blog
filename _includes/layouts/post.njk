@@ -23,3 +23,26 @@ templateClass: tmpl-post
 </ul>
 {%- endif %}
 {%- endif %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{{ title }}",
+  "image": [],
+  "author": "{{ metadata.author.name }}", 
+  "publisher": {
+    "@type": "Organization",
+    "name": "{{ metadata.author.name }}",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ '/img/favicon/favicon-192x192.png' | addHash }}"
+    }
+  },
+  "url": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
+  "mainEntityOfPage": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
+  "datePublished": "{{ page.date | htmlDateString }}",
+  "dateModified": "{{ page.inputPath | lastModifiedDate  | htmlDateString }}",
+  "description": "{{ content | striptags | truncate(140) }}"
+}
+</script>
