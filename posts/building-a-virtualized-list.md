@@ -20,7 +20,7 @@ const NUM_ITEMS = 100000;
 const TOTAL_SIZE = ITEM_SIZE * NUM_ITEMS;
 ```
 
-Now that we have a scrolling container, we need to position the items at their correct positions so that they are visible to the user. To determine which items are within the "window", we first must determine how much the scroll container has scrolled. We can read this from [`Element.scrollTop`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTop).It also must update whenever the user scrolls so we also want to listen to an element's [`scroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event) event.
+Now that we have a scrolling container, we need to position the items at their correct positions so that they are visible to the user. To determine which items are within the "window", we first must determine how much the scroll container has scrolled. We can read this from [`Element.scrollTop`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollTop). It also must update whenever the user scrolls so we also want to listen to an element's [`scroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event) event.
 
 ```js
 const startIndex = Math.max(Math.floor(scrollTop / ITEM_SIZE), 0);
