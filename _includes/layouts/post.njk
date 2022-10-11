@@ -42,7 +42,6 @@ templateClass: tmpl-post
   "url": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
   "mainEntityOfPage": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
   "datePublished": "{{ page.date | htmlDateString }}",
-  "dateModified": "{{ page.inputPath | htmlDateString }}",
   "description": "{{ content | striptags | truncate(140) }}"
 }
 </script>
