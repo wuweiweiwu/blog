@@ -25,6 +25,7 @@
     <meta property="og:title" content="{{ title or metadata.title }}">
     <meta property="og:description" content="{{ description or title or metadata.description or metadata.title }}">
     <meta property="og:type" content="article">
+    <meta property="og:image" content="{{ '/img/favicon/favicon-192x192.png' }}">
 
     <!-- Twitter -->
     <meta name="twitter:title" content="{{ title or metadata.title }}">
@@ -33,9 +34,6 @@
     <meta name="twitter:description" content="{{ description or title or metadata.description or metadata.title }}">
     <meta name="twitter:creator" content="@{{ metadata.author.twitterHandle }}">
 
-    {%- if image %}
-      <meta property="og:image" content="{{ image | absoluteUrl(metadata.url) }}">
-    {%- endif %}
 
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
