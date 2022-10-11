@@ -2,7 +2,7 @@
 title: Demystifying Tree Shaking
 description: Deep dive into how webpack handles tree shaking
 date: 2022-10-09
-tags: webpack
+tags: tooling
 layout: layouts/post.njk
 ---
 
