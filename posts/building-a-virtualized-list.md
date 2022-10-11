@@ -4,7 +4,6 @@ description: Deep dive into how list virtualization works
 date: 2022-10-11
 tags: performance
 layout: layouts/post.njk
-draft: true
 ---
 
 Have you ever tried rendering a list or table with ten thousand rows and wondered why my frame rate hit the gutter? Me too.
