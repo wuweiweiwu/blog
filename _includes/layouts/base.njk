@@ -1,24 +1,60 @@
 <!doctype html>
 <html lang="{{ metadata.language }}">
   <head>
+    {%- if ignore %}
+    <meta name="robots" content="noindex"/>
+    {%- endif %}
+
+    {%- if env.isProd %}
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ env.tracking.gtag }}');</script>
+    <!-- End Google Tag Manager -->
+    {%- endif %}
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ '/img/favicon/favicon-192x192.png' }}" type="image/png">
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
 
-    {#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
-    {#- <meta name="generator" content="{{ eleventy.generator }}"> #}
+    <!-- Open graph -->
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description or title }}">
+    <meta property="og:type" content="article">
+
+    <!-- Twitter -->
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@{{ metadata.author.twitterHandle }}">
+    <meta name="twitter:description" content="{{ description or title }}">
+    <meta name="twitter:creator" content="@{{ metadata.author.twitterHandle }}">
+
+    {%- if image %}
+      <meta property="og:image" content="{{ image | absoluteUrl(metadata.url) }}">
+    {%- endif %}
 
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-diff.css' | url }}">
+
+    <meta name="referrer" content="no-referrer-when-downgrade">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
 
     <script type="module" src="{{ '/lib/is-land.js' | url }}"></script>
   </head>
   <body>
+    {%- if env.isProd %}
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ env.tracking.gtag }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    {%- endif %}
+
     <header>
       <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
 
