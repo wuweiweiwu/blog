@@ -36,13 +36,13 @@ templateClass: tmpl-post
     "name": "{{ metadata.author.name }}",
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ '/img/favicon/favicon-192x192.png' | addHash }}"
+      "url": "{{ '/img/favicon/favicon-192x192.png' }}"
     }
   },
   "url": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
   "mainEntityOfPage": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
   "datePublished": "{{ page.date | htmlDateString }}",
-  "dateModified": "{{ page.inputPath | lastModifiedDate  | htmlDateString }}",
+  "dateModified": "{{ page.inputPath | htmlDateString }}",
   "description": "{{ content | striptags | truncate(140) }}"
 }
 </script>
