@@ -25,6 +25,7 @@ Now that we have a scrolling container, we need to position the items at their c
 
 ```js
 const startIndex = Math.max(Math.floor(scrollTop / ITEM_SIZE), 0);
+
 const endIndex = Math.min(
   startIndex + Math.ceil(LIST_SIZE / ITEM_SIZE),
   NUM_ITEMS
