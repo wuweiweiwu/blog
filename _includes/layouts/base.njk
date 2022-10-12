@@ -19,7 +19,7 @@
     <meta property="og:title" content="{{ title or metadata.title }}">
     <meta property="og:description" content="{{ description or title or metadata.description or metadata.title }}">
     <meta property="og:type" content="article">
-    <meta property="og:image" content="{{ env.baseUrl }}{{ '/img/favicon/favicon-512x512.png' }}">
+    <meta property="og:image" content="{{ env.baseUrl }}{{ '/img/preview.png' }}">
 
     <!-- Twitter -->
     <meta name="twitter:title" content="{{ title or metadata.title }}">
@@ -27,7 +27,7 @@
     <meta name="twitter:site" content="@{{ metadata.author.twitterHandle }}">
     <meta name="twitter:description" content="{{ description or title or metadata.description or metadata.title }}">
     <meta name="twitter:creator" content="@{{ metadata.author.twitterHandle }}">
-    <meta name="twitter:image" content="{{ env.baseUrl }}{{ '/img/favicon/favicon-512x512.png' }}">
+    <meta name="twitter:image" content="{{ env.baseUrl }}{{ '/img/preview.png' }}">
 
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
