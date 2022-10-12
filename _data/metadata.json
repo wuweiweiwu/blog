@@ -1,13 +1,13 @@
 {
   "title": "Wei-Wei Wu",
-  "url": "https://weiweiwu.me/",
+  "url": "https://weiweiwu.me",
   "language": "en",
   "description": "Sometimes I code a little.",
   "feed": {
     "subtitle": "Sometimes I code a little.",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://weiweiwu.me/"
+    "id": "https://weiweiwu.me"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
@@ -16,7 +16,7 @@
   "author": {
     "name": "Wei-Wei Wu",
     "email": "blog@weiweiwu.me",
-    "url": "https://weiweiwu.me/about-me/",
+    "url": "https://weiweiwu.me/about-me",
     "twitterHandle": "wuweiweiwu"
   }
 }
