@@ -10,7 +10,9 @@ I recently discovered this [issue](https://github.com/webpack/webpack/issues/933
 
 But first, let's define what tree shaking is. I've always thought of it as "unused code should not be included in my final production bundle." Though that statement is technically correct, it lacks nuance.
 
-With the introduction of `ES6`, we got modules and `import` `export` statements, which are statically analyzable and opened the door to many bundling optimizations. According to the [Module Spec](https://262.ecma-international.org/6.0/#sec-moduleevaluation), imported modules must have any side effects evaluated. However, that complicates how modern tools can effectively remove unused code. Take the following example.
+With the introduction of `ES6`, we got modules and `import` `export` statements, which are statically analyzable and opened the door to many bundling optimizations. According to the [Module Spec](https://262.ecma-international.org/6.0/#sec-moduleevaluation), imported modules must be evaluated. And an evaluated module may have side effects.
+
+What is a module side effect? A module side effect is any code that might do something when a module is evaluated. Module side effects complicates how modern tools can effectively remove unused code. Take the following example.
 
 ```js
 // Button.js
@@ -29,9 +31,7 @@ If `Button` is unused in your application code, it is safe to remove the `export
 - export default Button;
 ```
 
-That begs the question, "Is it safe to remove the rest of `Button.js`?". And the answer is we're not sure.
-
-To be able to remove the rest of `Button.js`, our bundler must first determine whether evaluating this module is side effect free. For example, does invoking `withHOC` result in a side effect? Does invoking the return value of `withHOC` result in a side effect? Due to the dynamic nature of JavaScript, in most cases, tools like `rollup` and `terser` cannot reliably determine whether side effects are present. So that's why we sometimes have to give our tools some hints.
+Is it safe to remove the rest of `Button.js`? To be able to remove the rest of `Button.js`, our bundler must first determine whether evaluating this module is side effect free. For example, does invoking `withHOC` result in a side effect? Does invoking the return value of `withHOC` result in a side effect? Due to the dynamic nature of JavaScript, in most cases, tools like `rollup` and `terser` cannot reliably determine whether side effects are present. So that's why we sometimes have to give our tools some hints.
 
 ## `/*#__PURE__*/`
 
