@@ -1,12 +1,12 @@
 ---
-title: Building a Virtualized List
-description: Deep dive into how list virtualization works
+title: Rendering a Million Rows Without Crashing Your Browser
+description: Deep dive into list virtualization
 date: 2022-10-11
 tags: performance
 layout: layouts/post.njk
 ---
 
-Have you ever tried rendering a list or table with ten thousand rows and wondered why my frame rate hit the gutter? Me too.
+Have you ever tried rendering a list or table with millions of rows and wondered why the frame rate hit the gutter? Me too.
 
 Let me introduce virtualization (aka windowing). This technique only renders the currently visible items to improve performance. You maintain a "window", and as the user scrolls, it moves up or down. Items that are positioned within the "window" are then dynamically rendered. All items outside of the window are ignored.
 
@@ -15,7 +15,7 @@ There are some tricks that developers use to give users the illusion that they a
 ```js
 const ITEM_SIZE = 40;
 const LIST_SIZE = 500;
-const NUM_ITEMS = 100000;
+const NUM_ITEMS = 1000000;
 
 const TOTAL_SIZE = ITEM_SIZE * NUM_ITEMS;
 ```
