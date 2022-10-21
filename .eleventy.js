@@ -25,6 +25,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(shikiTwoslash, {
     themes: ["dark-plus", "light-plus"],
+    disableImplicitReactImport: false,
   });
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
