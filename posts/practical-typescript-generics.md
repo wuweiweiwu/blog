@@ -118,12 +118,10 @@ const el = (
 
 You can see that `getDatumString` is typed correctly based on the inferred data type `T` from `data`. Note that we are not using the official React typings from `@types/react` to annotate `List`. In order to parameterize the types, we must define functional components as generic functions without annotating it as `React.FunctionalComponent`.
 
-Lets check out a more complicated example: polymorphic React components.
+Let's dive into a more complicated example, polymorphic React components.
 
 ```tsx twoslash
 import { ElementType, ComponentPropsWithoutRef, ReactNode } from "react";
-
-// ---cut---
 
 type BoxProps<T extends ElementType> = {
   //                    ^?
@@ -136,7 +134,7 @@ const Box = <T extends ElementType = "div">(
 ) => {
   const { as, ...rest } = props;
 
-  const Component = as || "button";
+  const Component = as || "div";
 
   return <Component {...rest} />;
 };
@@ -152,4 +150,10 @@ const Test = (props: { name: string }) => <div>{props.name}</div>;
 const testEl = <Box as={Test} />;
 ```
 
-We've parameterized the `as` prop to be of type `ElementType` which allows us to render the `Box` as any possible components or DOM elements. By using `ComponentPropsWithoutRef`, the `Box` component will inherit any props that come from `as` in a type safe way. For example, the `Test` component requires a `name` prop, and if that prop is not specified on `Box` when `Test` is passed as `as`, TypeScript will error out.
+We've parameterized the `as` prop to be of type `ElementType` which allows us to render the `Box` as any possible components or DOM elements. By using `ComponentPropsWithoutRef`, the `Box` component will also inherit any props that come from `as` in a type safe way. For example, the `Test` component requires a `name` prop, and if that prop is not specified on `Box` when `Test` is passed as `as`, TypeScript will error.
+
+This pattern is especially prevalent in third party UI libraries such as [`chakra-ui`](https://chakra-ui.com/) and [`mui`](https://mui.com/).
+
+## Conclusion
+
+Above are a couple of example of TypeScript generic usage that I've found to be extremely useful day to day. I hope you find them helpful as well! If you're interested in how I set up my TypeScript code samples on this blog post, check out [Shiki-Twoslash](https://shikijs.github.io/twoslash/).
