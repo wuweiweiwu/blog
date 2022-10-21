@@ -1,14 +1,6 @@
 <!doctype html>
 <html lang="{{ metadata.language }}">
   <head>
-    <!-- Google Tag Manager
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','{{ env.tracking.gtag }}');</script>
-    End Google Tag Manager -->
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="{{ '/img/favicon/favicon-192x192.png' }}" type="image/png">
@@ -30,8 +22,7 @@
     <meta name="twitter:image" content="{{ env.baseUrl }}{{ '/img/preview.png' }}">
 
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/prism-diff.css' | url }}">
+    <link rel="stylesheet" href="{{ '/css/shiki-twoslash.css' | url }}">
 
     <link rel="canonical" href="{{ metadata.url }}{{ canonicalUrl or page.url }}">
     <meta name="referrer" content="no-referrer-when-downgrade">
@@ -41,11 +32,6 @@
     <script type="module" src="{{ '/lib/is-land.js' | url }}"></script>
   </head>
   <body>
-    <!-- Google Tag Manager (noscript)
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ env.tracking.gtag }}"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    End Google Tag Manager (noscript) -->
-
     <header>
       <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
 
