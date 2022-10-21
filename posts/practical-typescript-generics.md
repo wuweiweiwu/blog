@@ -80,7 +80,7 @@ With this new predicate function, `truthyValues` now have the correct signature 
 
 I've been mostly working with React + TypeScript apps for the past couple of years. And one thing that always pops up is generic React components. Let's see how we can use these two technologies together.
 
-It's worth noting that to use JSX syntax in TypeScript, you must use the file extension `.tsx`. There are also some weird caveats especially related to generics. The TypeScript parser has a hard time disambiguating between JSX and generic syntax. However, there is [a simple workaround](https://github.com/microsoft/TypeScript/issues/15713#issuecomment-499474386).
+It's worth noting that to use JSX syntax in TypeScript, you must use the file extension `.tsx`. There are also some weird caveats especially related to generics. The TypeScript parser has a hard time disambiguating between JSX and generic syntax. However, there is [a workaround](https://github.com/microsoft/TypeScript/issues/15713#issuecomment-499474386).
 
 If we wanted to define a generic list component that can render lists of arbitrary objects, this is what it would look like.
 
