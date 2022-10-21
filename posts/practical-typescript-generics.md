@@ -75,6 +75,81 @@ truthyValues.forEach((value) => {
 });
 ```
 
-With this new predicate function, `truthyValues` now have the correct signature that we desire. And we are able to operate on items within the array without TypeScript erroring out.
+With this new predicate function, `truthyValues` now have the correct signature that we desire. We are now able to filter falsy values out from variable typed arrays while inferring the correct truthy type.
 
 ## Generic React Component
+
+I've been mostly working with React + TypeScript apps for the past couple of years. And one thing that always pops up is generic React components. Let's see how we can use these two technologies together.
+
+It's worth noting that to use JSX syntax in TypeScript, you must use the file extension `.tsx`. There are also some weird caveats especially related to generics. The TypeScript parser has a hard time disambiguating between JSX and generic syntax. However, there is [a simple workaround](https://github.com/microsoft/TypeScript/issues/15713#issuecomment-499474386).
+
+If we wanted to define a generic list component that can render lists of arbitrary objects, this is what it would look like.
+
+```tsx twoslash
+type ListProps<T> = {
+  data: T[];
+  getDatumString: (datum: T) => string;
+};
+
+const List = <T extends object>(props: ListProps<T>) => {
+  return (
+    <ul>
+      {props.data.map((datum) => (
+        <li>{props.getDatumString(datum)}</li>
+      ))}
+    </ul>
+  );
+};
+
+const data = [
+  //  ^?
+  { id: "test1", name: "test1 name" },
+  { id: "test2", name: "test2 name" },
+];
+
+const el = (
+  <List
+    data={data}
+    getDatumString={(datum) => datum.name}
+    //               ^?
+  />
+);
+```
+
+You can see that `getDatumString` is typed correctly based on the inferred data type `T` from `data`. Note that we are not using the official React typings from `@types/react` to annotate `List`. In order to parameterize the types, we must define functional components as generic functions without annotating it as `React.FunctionalComponent`.
+
+Lets check out a more complicated example: polymorphic React components.
+
+```tsx twoslash
+import { ElementType, ComponentPropsWithoutRef, ReactNode } from "react";
+
+// ---cut---
+
+type BoxProps<T extends ElementType> = {
+  //                    ^?
+  as?: T;
+  children?: ReactNode;
+};
+
+const Box = <T extends ElementType = "div">(
+  props: BoxProps<T> & Omit<ComponentPropsWithoutRef<T>, keyof BoxProps<T>>
+) => {
+  const { as, ...rest } = props;
+
+  const Component = as || "button";
+
+  return <Component {...rest} />;
+};
+
+// box as a link
+const linkEl = <Box as="a" href="#" />;
+//                         ^?
+
+const Test = (props: { name: string }) => <div>{props.name}</div>;
+
+// @errors: 2741
+// as another component
+const testEl = <Box as={Test} />;
+```
+
+We've parameterized the `as` prop to be of type `ElementType` which allows us to render the `Box` as any possible components or DOM elements. By using `ComponentPropsWithoutRef`, the `Box` component will inherit any props that come from `as` in a type safe way. For example, the `Test` component requires a `name` prop, and if that prop is not specified on `Box` when `Test` is passed as `as`, TypeScript will error out.
