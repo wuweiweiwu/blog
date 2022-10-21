@@ -1,17 +1,17 @@
 ---
 title: Practical TypeScript Generics
-description: Some real world examples of TypeScript generic types at work
+description: Some real-world examples of TypeScript generic types at work
 date: 2022-10-21
 tags: typescript
 layout: layouts/post.njk
 draft: true
 ---
 
-It's been ten years since TypeScript was first released to the public. Since then, tons of developers have gradually adopted it, both in personal projects and at work. One of the more confusing and complex aspects of TypeScript is it's support for generic types. Generics can be described as "type variables". They can be used to create classes, functions, and types that make it easier to write reusable code. This blog post dives into a couple of TypeScript generic utilities and use cases that I've found to be invaluable.
+It's been ten years since TypeScript was first released to the public. Since then, tons of developers have gradually adopted it, both in personal projects and at work. One of the more confusing and complex aspects of TypeScript is its support for generic types. Generics can be described as "type variables". They can be used to create classes, functions, and types that make it easier to write reusable code. This blog post dives into a couple of TypeScript generic utilities and use cases that I've found invaluable.
 
 ## Generic Predicate Function
 
-Say in your application logic, you need to filter out falsy values from an array. How can you do that in a type safe way? I'd reach for [`Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), where you can pass in a predicate function to filter out falsy values. The implementation would be something like the following:
+Say in your application logic, you need to filter out falsy values from an array. How can you do that in a type-safe way? I'd reach for [`Array.prototype.filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), where you can pass in a predicate function to filter out falsy values. The implementation would be something like the following:
 
 ```ts twoslash
 const possibleNullishValues = [null, "1", "2"];
@@ -50,11 +50,11 @@ const truthy = <T>(value: T | Falsy): value is T => {
 };
 ```
 
-First lets define a type for falsy values. Falsy values in JavaScript are `false`, `0`, `null`, `""`, and `undefined`. For our predicate function `truthy`, we can define the parameter type as our generic input type `T` unioned with our `Falsy` type. By defining the parameter type as a union, we can extract the truthy type out as the output type parameter.
+First let's define a type for falsy values. Falsy values in JavaScript are `false`, `0`, `null`, `""`, and `undefined`. For our predicate function `truthy`, we can define the parameter type as our generic input type `T` unioned with our `Falsy` type. By defining the parameter type as a union, we can extract the truthy type as the output type parameter.
 
 Then we assert the output type is the extracted truthy type by using the `is` keyword which is something called a [type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates). We can use type predicates to narrow a type. In this case, we are asserting that the parameter `value` is of type `T`, the extracted truthy type.
 
-As you can see, the body of the predicate function is the same as the first example, the only difference is the type signature. Let's test it out.
+As you can see, the body of the predicate function is the same as in the first example, the only difference is the type signature. Let's test it out.
 
 ```ts twoslash
 type Falsy = false | 0 | "" | null | undefined;
@@ -75,7 +75,7 @@ truthyValues.forEach((value) => {
 });
 ```
 
-With this new predicate function, `truthyValues` now have the correct signature that we desire. We are now able to filter falsy values out from variable typed arrays while inferring the correct truthy type.
+With this new predicate function, `truthyValues` now have the correct signature that we desire. We are now able to filter falsy values out from variable-typed arrays while inferring the correct truthy type.
 
 ## Generic React Component
 
@@ -116,7 +116,7 @@ const el = (
 );
 ```
 
-You can see that `getDatumString` is typed correctly based on the inferred data type `T` from `data`. Note that we are not using the official React typings from `@types/react` to annotate `List`. In order to parameterize the types, we must define functional components as generic functions without annotating it as `React.FunctionalComponent`.
+You can see that `getDatumString` is typed correctly based on the inferred data type `T` from `data`. Note that we are not using the official React typings from `@types/react` to annotate `List`. To parameterize the types, we must define functional components as generic functions without annotating them as `React.FunctionalComponent`.
 
 Let's dive into a more complicated example, polymorphic React components.
 
@@ -150,10 +150,10 @@ const Test = (props: { name: string }) => <div>{props.name}</div>;
 const testEl = <Box as={Test} />;
 ```
 
-We've parameterized the `as` prop to be of type `ElementType` which allows us to render the `Box` as any possible components or DOM elements. By using `ComponentPropsWithoutRef`, the `Box` component will also inherit any props that come from `as` in a type safe way. For example, the `Test` component requires a `name` prop, and if that prop is not specified on `Box` when `Test` is passed as `as`, TypeScript will error.
+We've parameterized the `as` prop to be of type `ElementType` which allows us to render the `Box` as any possible components or DOM elements. By using `ComponentPropsWithoutRef`, the `Box` component will also inherit any props that come from `as` in a type-safe way. For example, the `Test` component requires a `name` prop, and if that prop is not specified on `Box` when `Test` is passed as `as`, TypeScript will error.
 
-This pattern is especially prevalent in third party UI libraries such as [`chakra-ui`](https://chakra-ui.com/) and [`mui`](https://mui.com/).
+This pattern is especially prevalent in third-party UI libraries such as [`chakra-ui`](https://chakra-ui.com/) and [`mui`](https://mui.com/).
 
 ## Conclusion
 
-Above are a couple of example of TypeScript generic usage that I've found to be extremely useful day to day. I hope you find them helpful as well! If you're interested in how I set up my TypeScript code samples on this blog post, check out [Shiki-Twoslash](https://shikijs.github.io/twoslash/).
+Above are a couple of examples of TypeScript generic usage that I've found to be beneficial day to day. I hope you find them helpful as well! If you're interested in how I set up my TypeScript code samples in this blog post, check out [Shiki-Twoslash](https://shikijs.github.io/twoslash/).
