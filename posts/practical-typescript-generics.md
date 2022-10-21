@@ -107,16 +107,28 @@ const data = [
   { id: "test2", name: "test2 name" },
 ];
 
-const el = (
+// example one: inferred data type
+const ex1 = (
   <List
     data={data}
     getDatumString={(datum) => datum.name}
-    //               ^?
+    // ^?
+  />
+);
+
+// example two: specified data type
+// @errors: 2322
+const ex2 = (
+  <List<{ test: string }>
+    data={[{ what: 1 }]}
+    getDatumString={(datum) => datum.test}
   />
 );
 ```
 
-You can see that `getDatumString` is typed correctly based on the inferred data type `T` from `data`. Note that we are not using the official React typings from `@types/react` to annotate `List`. To parameterize the types, we must define functional components as generic functions without annotating them as `React.FunctionalComponent`.
+You can see that in example one, `getDatumString` is typed correctly based on the inferred data type `T` from `data` without explicit annotations. Type parameter can also be specified directly on a React component inside `<>` brackets directly after the component identifier. In example two, if `data` does not match the provided type parameter, TypeScript will error.
+
+Note that we are not using the official React typings from `@types/react` to annotate `List`. To parameterize the types, we must define functional components as generic functions without annotating them as `React.FunctionalComponent`.
 
 Let's dive into a more complicated example, polymorphic React components.
 
@@ -146,7 +158,7 @@ const linkEl = <Box as="a" href="#" />;
 const Test = (props: { name: string }) => <div>{props.name}</div>;
 
 // @errors: 2741
-// as another component
+// box as another component
 const testEl = <Box as={Test} />;
 ```
 
