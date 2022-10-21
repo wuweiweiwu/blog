@@ -1,6 +1,6 @@
 ---
 title: Practical TypeScript Generics
-description: Some real-world examples of TypeScript generic types at work
+description: Some real-world examples of TypeScript generic types
 date: 2022-10-21
 tags: typescript
 layout: layouts/post.njk
