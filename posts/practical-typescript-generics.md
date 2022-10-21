@@ -4,7 +4,6 @@ description: Some real-world examples of TypeScript generic types at work
 date: 2022-10-21
 tags: typescript
 layout: layouts/post.njk
-draft: true
 ---
 
 It's been ten years since TypeScript was first released to the public. Since then, tons of developers have gradually adopted it, both in personal projects and at work. One of the more confusing and complex aspects of TypeScript is its support for generic types. Generics can be described as "type variables". They can be used to create classes, functions, and types that make it easier to write reusable code. This blog post dives into a couple of TypeScript generic utilities and use cases that I've found invaluable.
