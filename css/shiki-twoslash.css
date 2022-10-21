@@ -23,8 +23,6 @@ pre {
   border-left: 1px solid #999;
   border-bottom: 1px solid #999;
 
-  margin-bottom: 3rem;
-
   /* Important to allow the code to move horizontally; */
   overflow-x: auto;
   position: relative;
@@ -319,5 +317,9 @@ pre .logger.log-log svg {
 @media (prefers-color-scheme: dark) {
   .shiki.light-plus {
     display: none;
+  }
+
+  pre .popover {
+    color: black !important;
   }
 }
