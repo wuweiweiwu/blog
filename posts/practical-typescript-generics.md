@@ -135,7 +135,6 @@ Let's dive into a more complicated example, polymorphic React components.
 import { ElementType, ComponentPropsWithoutRef, ReactNode } from "react";
 
 type BoxProps<T extends ElementType> = {
-  //                    ^?
   as?: T;
   children?: ReactNode;
 };
