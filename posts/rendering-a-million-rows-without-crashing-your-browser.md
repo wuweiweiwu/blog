@@ -15,7 +15,7 @@ There are some tricks that developers use to give users the illusion that they a
 ```js
 const ITEM_SIZE = 40;
 const LIST_SIZE = 500;
-const NUM_ITEMS = 1000000;
+const NUM_ITEMS = 1_000_000;
 
 const TOTAL_SIZE = ITEM_SIZE * NUM_ITEMS;
 ```
