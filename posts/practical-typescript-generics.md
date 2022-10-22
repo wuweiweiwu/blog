@@ -125,7 +125,7 @@ const ex2 = (
 );
 ```
 
-You can see that in example one, `getDatumString` is typed correctly based on the inferred data type `T` from `data` without explicit annotations. Type parameter can also be specified directly on a React component inside `<>` brackets directly after the component identifier. In example two, if `data` does not match the provided type parameter, TypeScript will error.
+You can see that in example one, `getDatumString` is typed correctly based on the inferred data type `T` from `data` without explicit annotations. Type parameters can also be specified directly on a React component inside `<>` brackets directly after the component identifier. In example two, if `data` does not match the provided type parameters, TypeScript will error.
 
 Note that we are not using the official React typings from `@types/react` to annotate `List`. To parameterize the types, we must define functional components as generic functions without annotating them as `React.FunctionalComponent`.
 
