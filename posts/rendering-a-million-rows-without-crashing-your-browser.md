@@ -39,7 +39,7 @@ const top = itemIndex * ITEM_SIZE;
 
 By placing each absolutely positioned element within the large scroll placeholder container, we can now take advantage of native scroll behavior but only render the visible items within the "window". To avoid showing a blank item when the user scrolls extremly fast, we can define a buffer, which is the number of items to render before the start of the window and after the end of the window. Below is an interactive example of how this all comes together.
 
-<is-land on:visible autoinit="preact" import="/lib/virtualized-list.js"></is-land>
+<is-land autoinit="preact" import="/lib/virtualized-list.js"></is-land>
 
 ## Further Explorations
 
