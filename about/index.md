@@ -1,11 +1,12 @@
 ---
-layout: layouts/post.njk
+layout: layouts/base.njk
 title: About Me
-templateClass: tmpl-post
 eleventyNavigation:
   key: About Me
   order: 3
 ---
+
+# About Me
 
 Hi, my name is Wei-Wei.
 
