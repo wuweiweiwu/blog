@@ -3,6 +3,7 @@
   "url": "https://weiweiwu.me",
   "language": "en",
   "description": "Sometimes I code a little.",
+  "genre": "Software Engineering",
   "feed": {
     "subtitle": "Sometimes I code a little.",
     "filename": "feed.xml",

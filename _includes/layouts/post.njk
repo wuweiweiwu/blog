@@ -24,6 +24,14 @@ templateClass: tmpl-post
 {%- endif %}
 {%- endif %}
 
+{% set shareUrl = metadata.url + page.url %}
+
+<share-widget>
+  <button on-click="share" aria-label="Share" href="{{ shareUrl | safe }}">
+    <div></div>
+  </button>
+</share-widget>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -31,6 +39,7 @@ templateClass: tmpl-post
   "headline": "{{ title }}",
   "image": [],
   "author": "{{ metadata.author.name }}", 
+  "genre": "{{ metadata.genre }}", 
   "publisher": {
     "@type": "Organization",
     "name": "{{ metadata.author.name }}",
@@ -42,6 +51,7 @@ templateClass: tmpl-post
   "url": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
   "mainEntityOfPage": "{{ metadata.url }}{{ canonicalUrl or page.url }}",
   "datePublished": "{{ page.date | htmlDateString }}",
+  "dateModified": "{{ page.date | htmlDateString }}",
   "description": "{{ content | striptags | truncate(140) }}"
 }
 </script>

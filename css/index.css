@@ -256,6 +256,52 @@ a[href].direct-link:focus:visited,
   color: #aaa;
 }
 
-.utterances {
-  margin-left: 0;
+/* share */
+
+share-widget {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  opacity: 0.9;
+}
+
+share-widget div {
+  width: 30px;
+  height: 30px;
+  background-image: url("/img/share.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.apple share-widget div {
+  background-image: url("/img/share-apple.svg");
+}
+
+share-widget button {
+  background: #f2f2f2;
+  color: #191919;
+  cursor: pointer;
+  display: inline-block;
+  padding: 0.75em 1.5em;
+  text-align: center;
+  margin: 0 0.75em 1.5em 0;
+  border-radius: 0.3em;
+  max-width: 100%;
+  border: 0;
+}
+
+share-widget button:active {
+  transform: scale(1.2);
+}
+
+share-widget button:hover {
+  background: #fff;
+}
+
+dialog {
+  background-color: #8dff80;
+  position: fixed;
+  opacity: 0.9;
+  z-index: 1000;
+  margin-top: 26px;
 }
