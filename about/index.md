@@ -16,4 +16,4 @@ Previously, I was at [Density](https://density.io/), where I built [Atlas](https
 
 I love startups, open source, and frontend infrastructure.
 
-Find me on [Github](https://github.com/wuweiweiwu), [LinkedIn](https://www.linkedin.com/in/hungweiwu/), and [Twitter](https://twitter.com/wuweiweiwu).
+Find me on [GitHub](https://github.com/wuweiweiwu), [LinkedIn](https://www.linkedin.com/in/hungweiwu/), and [Twitter](https://twitter.com/wuweiweiwu).
