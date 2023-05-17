@@ -10,9 +10,9 @@ eleventyNavigation:
 
 Hi, my name is Wei-Wei.
 
-Right now I am a software engineer at [Assembled](https://www.assembled.com/), where I'm working on next-generation workforce management tools.
+Right now I am founding a company within the data and analytics space.
 
-Previously, I was at [Density](https://density.io/), where I built [Atlas](https://density.io/atlas), the flagship space insights and analysis tool. Before that, I was the first engineer at [Nashi](https://www.prnewswire.com/news-releases/density-acquires-nashi-a-desk--and-space-reservation-solution-to-better-enable-hybrid-workplaces-301321843.html), where I built software to help employees collaborate in a hybrid workplace.
+Previously, I built software at a couple of different startups. I specialize in building and launching 0-1 products and creating tooling to enable engineers to iterate and ship quickly.
 
 I love startups, open source, and web infrastructure.
 
