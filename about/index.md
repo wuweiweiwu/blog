@@ -10,7 +10,7 @@ eleventyNavigation:
 
 Hi, my name is Wei-Wei.
 
-Right now I am founding a company within the data and analytics space.
+Right now I am founding a company!
 
 Previously, I built software at a couple of different startups. I specialize in building and launching 0-1 products and creating tooling to enable engineers to iterate and ship quickly.
 
