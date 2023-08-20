@@ -10,10 +10,10 @@ eleventyNavigation:
 
 Hi, my name is Wei-Wei.
 
-Right now I am founding a company!
+Right now I am working on my startup focusing on autonomous web agents with LLMs!
 
-Previously, I built software at a couple of different startups. I specialize in building and launching 0-1 products and creating tooling to enable engineers to iterate and ship quickly.
+For the past few years, I've been a maintainer of Storybook and Rollup, as well as a plethora other NPM packages with a total of over 100m+ downloads monthly. I'm highly active on GitHub and have contributed to numerous projects, including React and Node.js.
 
-I love startups, open source, and web infrastructure.
+I geek out about web infra and dev tooling and occasionally blog about tech.
 
 Find me on [GitHub](https://github.com/wuweiweiwu), [LinkedIn](https://www.linkedin.com/in/hungweiwu/), and [Twitter](https://twitter.com/wuweiweiwu).
